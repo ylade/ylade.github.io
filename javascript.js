@@ -9,20 +9,26 @@ document.querySelector("#activate-button").onclick = function () {
     centeredText.innerHTML += "<p class=\"test-text\">Heyo this is a test (please work)</p>"
 }
 
+let titleIndex = 0;
+
 setInterval((function () {
     const title = document.querySelector("title")
-    let currentDots = title.innerText.replace(/[^.]/g, "").length
-    if (currentDots === 0) {
-        title.innerText = "delay."
-    } else if (currentDots === 1) {
-        title.innerText = "delay.."
-    } else if (currentDots === 2) {
-        title.innerText = "delay..."
-    } else if (currentDots === 3) {
-        title.innerText = "delay"
-    }
+    const titles = ['no bitches', 'still 0', 'damn :(', 'help me']
+    titleIndex += 1
+    title.innerText = titles[titleIndex % titles.length]
+}), 2000)
 
-}), 1000)
+
+setInterval((function () {
+    const e = document.querySelector("link[rel='icon']");
+    //console.log(e);
+    let n = parseInt(e.href.slice(-19, -16));
+    //console.log(n);
+    let t = (n + 1) % 266;
+    //console.log(t)
+    //e.href = "http://127.0.0.1:5500/visual_studio_code_projects/websites/real%20websites/website%20with%20video%20as%20bg/images/spongebobwild/frame_" + String(t).padStart(3, "0") + "_delay-0.02s.gif"
+    e.href = "/spongebobwildin/frame_" + String(t).padStart(3, "0") + "_delay-0.02s.gif"
+}), 10)
 
 
 const canvas = document.getElementById('sheet'), g = canvas.getContext("2d");
