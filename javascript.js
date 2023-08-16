@@ -24,38 +24,30 @@ setInterval((function () {
 
 }), 1000)
 
-document.addEventListener('DOMContentLoaded', () => {
-    const app = document.querySelector('.app');
 
-    const coordinates = {
-        x: undefined,
-        y: undefined
+const canvas = document.getElementById('sheet'), g = canvas.getContext("2d");
+g.canvas.width = window.innerWidth;
+g.canvas.height = window.innerHeight;
+g.strokeStyle = "rgb(255, 255, 255)";
+g.lineJoin = "round";
+g.lineWidth = 20;
+g.filter = "blur(2px)";
+
+const
+    relPos = pt => [pt.pageX - canvas.offsetLeft, pt.pageY - canvas.offsetTop],
+    drawStart = pt => { with (g) { beginPath(); moveTo.apply(g, pt); stroke(); } },
+    drawMove = pt => { with (g) { lineTo.apply(g, pt); stroke(); } },
+
+    pointerDown = e => drawStart(relPos(e.touches ? e.touches[0] : e)),
+    pointerMove = e => drawMove(relPos(e.touches ? e.touches[0] : e)),
+
+    draw = (method, move, stop) => e => {
+        if (method == "add") pointerDown(e);
+        canvas[method + "EventListener"](move, pointerMove);
+        canvas[method + "EventListener"](stop, g.closePath);
     };
 
-    const addElement = () => {
-        const newEle = document.createElement('div');
-        newEle.classList.add('line');
-
-        newEle.style.left = coordinates.x + 'px';
-        newEle.style.top = coordinates.y + 'px';
-
-        app.appendChild(newEle);
-    }
-
-    const updateCoordinates = e => {
-        if (coordinates.x === undefined || coordinates.y === undefined) {
-            coordinates.x = e.x;
-            coordinates.y = e.y;
-            addElement();
-        }
-        if (Math.abs(coordinates.x - e.x) > 50 || Math.abs(coordinates.y - e.y) > 50) {
-            coordinates.x = e.x;
-            coordinates.y = e.y;
-            addElement();
-        }
-    }
-    app.addEventListener('mousemove', e => {
-        updateCoordinates(e);
-    });
-    app.addEventListener('')
-});
+canvas.addEventListener("mousedown", draw("add", "mousemove", "mouseup"));
+canvas.addEventListener("touchstart", draw("add", "touchmove", "touchend"));
+canvas.addEventListener("mouseup", draw("remove", "mousemove", "mouseup"));
+canvas.addEventListener("touchend", draw("remove", "touchmove", "touchend"));
