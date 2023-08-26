@@ -21,38 +21,34 @@ setInterval((function () {
 
 setInterval((function () {
     const e = document.querySelector("link[rel='icon']");
-    //console.log(e);
     let n = parseInt(e.href.slice(-19, -16));
-    //console.log(n);
     let t = (n + 1) % 266;
-    //console.log(t)
     e.href = "/spongebobwildin/frame_" + String(t).padStart(3, "0") + "_delay-0.02s.gif"
 }), 8)
 
 
-const canvas = document.getElementById('sheet'), g = canvas.getContext("2d");
-g.canvas.width = window.innerWidth;
-g.canvas.height = window.innerHeight;
-g.strokeStyle = "rgb(255, 255, 255)";
-g.lineJoin = "round";
-g.lineWidth = 20;
-g.filter = "blur(2px)";
+let canvas = document.getElementById("canvas")
+let context = canvas.getContext('2d')
 
-const
-    relPos = pt => [pt.pageX - canvas.offsetLeft, pt.pageY - canvas.offsetTop],
-    drawStart = pt => { with (g) { beginPath(); moveTo.apply(g, pt); stroke(); } },
-    drawMove = pt => { with (g) { lineTo.apply(g, pt); stroke(); } },
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
 
-    pointerDown = e => drawStart(relPos(e.touches ? e.touches[0] : e)),
-    pointerMove = e => drawMove(relPos(e.touches ? e.touches[0] : e)),
+function drawPoint(context, x, y) {
+    context.beginPath();
+    context.arc(x, y, 5, 0, 2 * Math.PI, false);
+    context.closePath();
 
-    draw = (method, move, stop) => e => {
-        if (method == "add") pointerDown(e);
-        canvas[method + "EventListener"](move, pointerMove);
-        canvas[method + "EventListener"](stop, g.closePath);
-    };
+    context.fillStyle = "rgb(255, 255, 255)";
+    context.lineJoin = "round";
+    context.lineWidth = 20;
+    context.filter = "blur(80px)";
+    context.fill();
+}
 
-canvas.addEventListener("mousedown", draw("add", "mousemove", "mouseup"));
-canvas.addEventListener("touchstart", draw("add", "touchmove", "touchend"));
-canvas.addEventListener("mouseup", draw("remove", "mousemove", "mouseup"));
-canvas.addEventListener("touchend", draw("remove", "touchmove", "touchend"));
+document.getElementById("canvas").onmousemove = function (event) {
+    drawPoint(context, event.clientX, event.clientY)
+}
+
+document.getElementById('canvas').ontouchmove = function (event) {
+    drawPoint(context, event.clientX, event.clientY)
+}
