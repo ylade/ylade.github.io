@@ -52,3 +52,10 @@ document.getElementById("canvas").onmousemove = function (event) {
 document.getElementById('canvas').ontouchmove = function (event) {
     drawPoint(context, event.clientX, event.clientY)
 }
+
+
+const handleContextMenu = (event) => {
+    event.preventDefault();
+};
+
+document.addEventListener('contextmenu', handleContextMenu);
