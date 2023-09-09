@@ -75,11 +75,11 @@ body {
 .name-part {
   display: block;
   color: white;
-  font-size: 70px;
+  font-size: 90px;
   font-weight: 600;
   margin-top: -55px;
   -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 3px;
 }
 
 .background-video {
