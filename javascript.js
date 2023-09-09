@@ -5,8 +5,8 @@ document.querySelector("#activate-button").onclick = function () {
     const content = document.querySelector(".content")
     content.innerHTML = "<div class=\"centered-text\"></div>"
     const centeredText = document.querySelector(".centered-text")
-    centeredText.innerHTML = "<p class=\"name-part\">delay</p>"
-    centeredText.innerHTML += "<p class=\"test-text\">Heyo this is a test (please work)</p>"
+    centeredText.innerHTML = "<p class=\"name-part\">ylade</p>"
+    centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
 }
 
 let titleIndex = 0;
