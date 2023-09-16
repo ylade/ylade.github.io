@@ -6,7 +6,10 @@ document.querySelector("#activate-button").onclick = function () {
     content.innerHTML = "<div class=\"centered-text\"></div>"
     const centeredText = document.querySelector(".centered-text")
     centeredText.innerHTML = "<p class=\"name-part\">ylade</p>"
-    centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
+    //centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
+    centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/shrekophone.mp4\"></video>"
+    const canvas = document.querySelector("#canvas")
+    canvas.remove()
 }
 
 let titleIndex = 0;
