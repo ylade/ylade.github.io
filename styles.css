@@ -68,18 +68,16 @@ body {
   top: 50%;
   position: absolute;
   text-align: center;
-  font-family: Roboto, Arial;
+  font-family: "Space Mono", monospace;
 }
 
 
 .name-part {
   display: block;
   color: white;
-  font-size: 90px;
+  font-size: 6.5rem;
   font-weight: 600;
   margin-top: -55px;
-  -webkit-text-stroke-color: black;
-  -webkit-text-stroke-width: 3px;
 }
 
 .background-video {
