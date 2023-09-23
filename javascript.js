@@ -5,11 +5,12 @@ document.querySelector("#activate-button").onclick = function () {
     const content = document.querySelector(".content")
     content.innerHTML = "<div class=\"centered-text\"></div>"
     const centeredText = document.querySelector(".centered-text")
-    centeredText.innerHTML = "<p class=\"name-part\">ylade</p>"
+    centeredText.innerHTML = "<h1 data-value=\"YLADE\" class=\"name-part\">YLADE</h1>"
     //centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
     centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/shrekophone.mp4\"></video>"
     const canvas = document.querySelector("#canvas")
     canvas.remove()
+    nameChangeAnimation();
 }
 
 let titleIndex = 0;
@@ -21,6 +22,36 @@ setInterval((function () {
     title.innerText = titles[titleIndex % titles.length]
 }), 2000)
 
+nameChangeAnimation = function(){
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let interval = null;
+
+    document.querySelector("h1").onmouseover = event => {  
+    let iteration = 0;
+    
+    clearInterval(interval);
+    
+    interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+            if(index < iteration) {
+            return event.target.dataset.value[index];
+            }
+        
+            return letters[Math.floor(Math.random() * 26)]
+        })
+        .join("");
+        
+        if(iteration >= event.target.dataset.value.length){ 
+        clearInterval(interval);
+        }
+        
+        iteration += 1 / 30;
+    }, 10);
+    }
+}
 
 setInterval((function () {
     const e = document.querySelector("link[rel='icon']");
