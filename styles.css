@@ -66,9 +66,11 @@ body {
 
 .centered-text {
   top: 50%;
+  left: 50%;
   position: absolute;
   text-align: center;
   font-family: "Space Mono", monospace;
+  transform: translate(-50%, -50%);
 }
 
 
