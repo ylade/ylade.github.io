@@ -4,12 +4,12 @@ document.querySelector("#activate-button").onclick = function () {
     button.remove();
     const content = document.querySelector(".content")
     content.innerHTML = "<div class=\"centered-text\"></div>"
+    centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/shrekophone.mp4\"></video>"
+    //centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
+    const canvas = document.querySelector("#canvas")
+    canvas.remove();
     const centeredText = document.querySelector(".centered-text")
     centeredText.innerHTML = "<h1 data-value=\"YLADE\" class=\"name-part\">YLADE</h1>"
-    //centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/my_star_opening.mp4\"></video>"
-    centeredText.innerHTML += "<video class=\"background-video\" autoplay loop volume=\"1\" playsinline><source src=\"/background_video/shrekophone.mp4\"></video>"
-    const canvas = document.querySelector("#canvas")
-    canvas.remove()
     nameChangeAnimation();
 }
 
